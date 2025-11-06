@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HR Recruitment Assistant</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="chat-container">
+        <!-- Header Section -->
+        <div class="chat-header">
+            <div class="header-content">
+                <div class="company-info">
+                    <h1>HR Recruitment Assistant</h1>
+                    <p>We're here to help you submit your application</p>
+                </div>
+                <div class="status-indicator">
+                    <span class="status-dot online"></span>
+                    <span class="status-text">Online</span>
+                </div>
+            </div>
+            <div class="progress-section">
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="progressBar">
+                        <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                    </div>
+                    <div class="progress-text" id="progressText">Ready to start</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chat Window -->
+        <div class="chat-window" id="chatWindow">
+            <div class="messages-container" id="messagesContainer">
+                <!-- Welcome message will be added here -->
+                <div class="typing-indicator" id="typingIndicator" style="display: none;">
+                    <span class="typing-dots">
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </span>
+                    <span class="typing-text">HR Assistant is typing...</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Summary Section (hidden initially) -->
+        <div class="summary-section" id="summarySection" style="display: none;">
+            <div class="summary-content">
+                <h3>Application Summary</h3>
+                <div class="summary-details" id="summaryDetails">
+                    <!-- Summary will be populated here -->
+                </div>
+                <div class="summary-actions">
+                    <button class="btn btn-secondary" id="editBtn">Edit Application</button>
+                    <button class="btn btn-primary" id="confirmBtn">Confirm & Submit</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Input Area -->
+        <div class="input-area" id="inputArea">
+            <div class="input-container">
+                <div class="input-wrapper">
+                    <input
+                        type="text"
+                        class="message-input"
+                        id="messageInput"
+                        placeholder="Type your message here..."
+                        autocomplete="off"
+                        maxlength="500"
+                    >
+                    <div class="input-actions">
+                        <button class="send-btn" id="sendBtn" disabled>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="character-count" id="characterCount">0 / 500</div>
+            </div>
+
+            <!-- Error display -->
+            <div class="error-message" id="errorMessage" style="display: none;">
+                <span class="error-icon">⚠️</span>
+                <span class="error-text" id="errorText"></span>
+            </div>
+
+            <!-- Success display -->
+            <div class="success-message" id="successMessage" style="display: none;">
+                <span class="success-icon">✅</span>
+                <span class="success-text" id="successText"></span>
+            </div>
+        </div>
+
+        <!-- Start Over Section (hidden initially) -->
+        <div class="start-over-section" id="startOverSection" style="display: none;">
+            <button class="btn btn-outline" id="startOverBtn">Start New Application</button>
+        </div>
+
+        <!-- Edit Modal (hidden initially) -->
+        <div class="modal-overlay" id="editModal" style="display: none;">
+            <div class="modal">
+                <div class="modal-header">
+                    <h3>Edit Application</h3>
+                    <button class="modal-close" id="modalClose">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="edit-form" id="editForm">
+                        <!-- Edit form will be populated here -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" id="cancelEditBtn">Cancel</button>
+                    <button class="btn btn-primary" id="saveEditBtn">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <h2>HR Recruitment Assistant</h2>
+            <p>Loading...</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        // Initialize app when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.HRBot) {
+                window.HRBot.init();
+            }
+        });
+    </script>
+</body>
+</html>
